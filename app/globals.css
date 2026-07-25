@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-paper-border dark:border-ink-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-ink antialiased;
+    @apply dark:bg-ink dark:text-paper;
+    font-feature-settings: "ss01" on, "cv01" on;
+  }
+
+  ::selection {
+    background-color: #c6ff3d;
+    color: #0b0e11;
+  }
+
+  :focus-visible {
+    outline: 2px solid #5b8cff;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-6xl px-6 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-ink/10 bg-ink/[0.03] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/60;
+    @apply dark:border-paper/10 dark:bg-paper/5 dark:text-paper/60;
+  }
+
+  .card {
+    @apply rounded-2xl border border-ink/10 bg-white/60 backdrop-blur-sm;
+    @apply dark:border-paper/10 dark:bg-white/[0.03];
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 ease-out;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink text-paper hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-6px_rgba(198,255,61,0.5)];
+    @apply dark:bg-signal dark:text-ink dark:hover:shadow-[0_8px_28px_-6px_rgba(198,255,61,0.55)];
+    background-image: linear-gradient(#0b0e11, #0b0e11);
+  }
+
+  html.dark .btn-primary {
+    background-image: none;
+  }
+
+  .btn-secondary {
+    @apply btn border border-ink/15 bg-transparent text-ink hover:border-ink/30 hover:bg-ink/[0.04];
+    @apply dark:border-paper/20 dark:text-paper dark:hover:border-paper/40 dark:hover:bg-paper/[0.06];
+  }
+
+  .link-underline {
+    @apply relative text-ink/70 transition-colors hover:text-ink dark:text-paper/70 dark:hover:text-paper;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-grid {
+    background-image: linear-gradient(
+        to right,
+        rgba(139, 147, 161, 0.08) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(139, 147, 161, 0.08) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .mask-fade-b {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+}
